@@ -1,0 +1,19 @@
+ErrorDocument 404 /siwes/sadaka/HTML/adpa/404
+
+RewriteEngine On
+RewriteBase /siwes/sadaka/HTML/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} ^(.*?)/?$
+RewriteCond %{/siwes/sadaka/HTML/}/%1.php -f
+RewriteRule ^(.*?)/?$ $1.php
+
+<IfModule mod_deflate.c>
+<FilesMatch "\.(html|php|txt|xml|js|css)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+
+# Cache files of the following types for 1 week
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf|svg)$">
+Header set Cache-Control "max-age=604800, public"
+</FilesMatch>
